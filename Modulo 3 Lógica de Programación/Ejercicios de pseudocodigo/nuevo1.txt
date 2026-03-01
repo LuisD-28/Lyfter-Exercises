@@ -1,0 +1,52 @@
+Inicio 
+
+Definir numero
+Definir respuesta
+
+Mostrar "Ingrese un numero"
+Pedir numero
+
+si (numero % 3 = 0) & (numero % 5 = 0)entonces: 
+    respuesta = "FizzBuzz"
+Sino:
+   si (numero % 3 = 0)entonces:
+       respuesta = "Fizz"
+   Sino:
+       si (numero % 5 = 0)
+	       respuesta = "Buzz"
+	   Sino:
+	       respuesta = "Este numero no es divisible ni con 3 ni con 5"
+	   Finsi
+   Finsi
+
+Mostrar respuesta
+   
+Fin
+
+
+
+Inicio
+
+Definir suma = 0
+Definir contador = 1
+
+
+Mientras contador <= 100 Hacer:
+    
+    Mostrar "Ingresar numero"
+	Pedir numero
+	
+	suma = suma + numero
+	
+	contador = contador + 1
+	
+FinMientras	
+
+Mostrar "la suma total de los numeros es:"
+Mostrar suma
+
+
+
+
+
+Fin

@@ -1,0 +1,372 @@
+[
+    {
+        "name": {
+            "english": "Pikachu"
+        },
+        "level": 25,
+        "type": [
+            "Electric"
+        ],
+        "base": {
+            "HP": 35,
+            "Attack": 55,
+            "Defense": 40,
+            "Sp. Attack": 50,
+            "Sp. Defense": 50,
+            "Speed": 90
+        }
+    },
+    {
+        "name": {
+            "english": "Charmander"
+        },
+        "level": 15,
+        "type": [
+            "Fire"
+        ],
+        "base": {
+            "HP": 39,
+            "Attack": 52,
+            "Defense": 43,
+            "Sp. Attack": 60,
+            "Sp. Defense": 50,
+            "Speed": 65
+        }
+    },
+    {
+        "name": {
+            "english": "Squirtle"
+        },
+        "level": 18,
+        "type": [
+            "Water"
+        ],
+        "base": {
+            "HP": 44,
+            "Attack": 48,
+            "Defense": 65,
+            "Sp. Attack": 50,
+            "Sp. Defense": 64,
+            "Speed": 43
+        }
+    },
+    {
+        "name": {
+            "english": "Charmander"
+        },
+        "level": 23,
+        "type": [
+            "Fire"
+        ],
+        "base": {
+            "HP": 23,
+            "Attack": 12,
+            "Defense": 43,
+            "Sp. Attack": 45,
+            "Sp. Defense": 2,
+            "Speed": 2
+        }
+    },
+    {
+        "name": {
+            "english": "Blastoise"
+        },
+        "level": 34,
+        "type": [
+            "Water"
+        ],
+        "base": {
+            "HP": 23,
+            "Attack": 21,
+            "Defense": 32,
+            "Sp. Attack": 12,
+            "Sp. Defense": 23,
+            "Speed": 4
+        }
+    },
+    {
+        "name": {
+            "english": "Caterpie"
+        },
+        "level": 23,
+        "type": [
+            "Bug"
+        ],
+        "base": {
+            "HP": 23,
+            "Attack": 4,
+            "Defense": 32,
+            "Sp. Attack": 1,
+            "Sp. Defense": 32,
+            "Speed": 43
+        }
+    },
+    {
+        "name": {
+            "english": "Lucario"
+        },
+        "level": 33,
+        "type": [
+            "Fighting",
+            "Steel"
+        ],
+        "base": {
+            "HP": 34,
+            "Attack": 45,
+            "Defense": 43,
+            "Sp. Attack": 23,
+            "Sp. Defense": 4,
+            "Speed": 3
+        }
+    },
+    {
+        "name": {
+            "english": "Gardevoir"
+        },
+        "level": 29,
+        "type": [
+            "Psychic",
+            "Fairy"
+        ],
+        "base": {
+            "HP": 23,
+            "Attack": 45,
+            "Defense": 2,
+            "Sp. Attack": 34,
+            "Sp. Defense": 43,
+            "Speed": 2
+        }
+    },
+    {
+        "name": {
+            "english": "Umbreon"
+        },
+        "level": 28,
+        "type": [
+            "Dark"
+        ],
+        "base": {
+            "HP": 23,
+            "Attack": 54,
+            "Defense": 34,
+            "Sp. Attack": 2,
+            "Sp. Defense": 34,
+            "Speed": 4
+        }
+    },
+    {
+        "name": {
+            "english": "Alakazam"
+        },
+        "level": 30,
+        "type": [
+            "Psychic"
+        ],
+        "base": {
+            "HP": 23,
+            "Attack": 45,
+            "Defense": 23,
+            "Sp. Attack": 3,
+            "Sp. Defense": 34,
+            "Speed": 4
+        }
+    },
+    {
+        "name": {
+            "english": "Metagross"
+        },
+        "level": 52,
+        "type": [
+            "Steel",
+            "Psychic"
+        ],
+        "base": {
+            "HP": 23,
+            "Attack": 54,
+            "Defense": 43,
+            "Sp. Attack": 23,
+            "Sp. Defense": 4,
+            "Speed": 2
+        }
+    },
+    {
+        "name": {
+            "english": "Excadrill"
+        },
+        "level": 34,
+        "type": [
+            "Ground",
+            "Steel"
+        ],
+        "base": {
+            "HP": 23,
+            "Attack": 54,
+            "Defense": 3,
+            "Sp. Attack": 23,
+            "Sp. Defense": 43,
+            "Speed": 2
+        }
+    },
+    {
+        "name": {
+            "english": "Lapras"
+        },
+        "level": 54,
+        "type": [
+            "Water",
+            "Ice"
+        ],
+        "base": {
+            "HP": 23,
+            "Attack": 54,
+            "Defense": 34,
+            "Sp. Attack": 23,
+            "Sp. Defense": 32,
+            "Speed": 43
+        }
+    },
+    {
+        "name": {
+            "english": "Infernape"
+        },
+        "level": 23,
+        "type": [
+            "Fire",
+            "Fighting"
+        ],
+        "base": {
+            "HP": 23,
+            "Attack": 54,
+            "Defense": 3,
+            "Sp. Attack": 23,
+            "Sp. Defense": 1,
+            "Speed": 3
+        }
+    },
+    {
+        "name": {
+            "english": "Volcarona"
+        },
+        "level": 23,
+        "type": [
+            "Bug",
+            "Fire"
+        ],
+        "base": {
+            "HP": 23,
+            "Attack": 43,
+            "Defense": 23,
+            "Sp. Attack": 2,
+            "Sp. Defense": 3,
+            "Speed": 3
+        }
+    },
+    {
+        "name": {
+            "english": "Tinkaton"
+        },
+        "level": 34,
+        "type": [
+            "Fairy",
+            "Steel"
+        ],
+        "base": {
+            "HP": 23,
+            "Attack": 43,
+            "Defense": 23,
+            "Sp. Attack": 34,
+            "Sp. Defense": 54,
+            "Speed": 2
+        }
+    },
+    {
+        "name": {
+            "english": "Greninja"
+        },
+        "level": 23,
+        "type": [
+            "Water",
+            "Dark"
+        ],
+        "base": {
+            "HP": 23,
+            "Attack": 43,
+            "Defense": 3,
+            "Sp. Attack": 2,
+            "Sp. Defense": 3,
+            "Speed": 30
+        }
+    },
+    {
+        "name": {
+            "english": "Scizor"
+        },
+        "level": 23,
+        "type": [
+            "Bug",
+            "Steel"
+        ],
+        "base": {
+            "HP": 23,
+            "Attack": 45,
+            "Defense": 43,
+            "Sp. Attack": 30,
+            "Sp. Defense": 23,
+            "Speed": 1
+        }
+    },
+    {
+        "name": {
+            "english": "Bisharp"
+        },
+        "level": 30,
+        "type": [
+            "Dark",
+            "Steel"
+        ],
+        "base": {
+            "HP": 23,
+            "Attack": 23,
+            "Defense": 23,
+            "Sp. Attack": 23,
+            "Sp. Defense": 23,
+            "Speed": 23
+        }
+    },
+    {
+        "name": {
+            "english": "Primarina"
+        },
+        "level": 23,
+        "type": [
+            "Water",
+            "Fairy"
+        ],
+        "base": {
+            "HP": 23,
+            "Attack": 43,
+            "Defense": 23,
+            "Sp. Attack": 34,
+            "Sp. Defense": 43,
+            "Speed": 3
+        }
+    },
+    {
+        "name": {
+            "english": "Azumarill"
+        },
+        "level": 23,
+        "type": [
+            "Water",
+            "Fairy"
+        ],
+        "base": {
+            "HP": 23,
+            "Attack": 45,
+            "Defense": 43,
+            "Sp. Attack": 23,
+            "Sp. Defense": 2,
+            "Speed": 4
+        }
+    }
+]

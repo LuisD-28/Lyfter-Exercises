@@ -1,0 +1,16 @@
+INICIO
+
+1. Mientras el estudiante no se sienta listo para el examen
+   1. Leer
+   2. RepasarApuntes
+   3. Practicar
+   
+   4. Si quedan dudas
+      1. Identificarlas
+      2. Buscar solucion
+      3. Practicar
+3. FinMientras
+
+2. Presentar el examen 
+
+FIN

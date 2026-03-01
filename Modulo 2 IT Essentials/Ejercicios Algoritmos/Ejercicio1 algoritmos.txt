@@ -1,0 +1,47 @@
+Ver_un_video_de_YouTube_v1.0
+
+Inicio
+
+1. Abrir el navegador web
+
+2. Ir a Youtube.com
+
+3. Elejir que video ver de YouTube
+4. Si el Usuario quiere buscar un video 
+    1.Buscar el Video en en la barra de busqueda de YouTube
+    2.Seleccionar el Video de YouTube 
+
+4. Reproducir Video de Youtube
+
+Fin
+   
+
+
+Rutina_Diaria_v1.1
+
+
+Inicio
+
+1. Si Dia de la semana es Lunes, Martes, Miercoles o Jueve entonces
+   1. Hora para despertar = 4:30 AM
+   2. Alistarse para ir a trabajar
+   3. Salir de casa a las 5 AM hacia el trabajo
+   4. Trabajar
+      1. Llegar al trabajo a las 6AM
+      3. Realizar deberes diarios en el trabajo
+      2. Salir del trabajo a las 4:30 PM
+   5. Regresar a casa
+2. Si no
+   1. Hora para despertar indefinida
+   2. Mientras haya deberes designados para fines de semana:
+      1. Hacer deberes
+   3. ver series o jugar videojuegos   
+3. Mientras haya deberes diarios del hogar por realizar:
+   1. Hacer deberes diarios 
+4. Preparar la cena
+5. Si no estoy cansado
+   1. Mirar series o jugar videojuegos
+6. Prepararse para ir a dormir
+7. Dormir
+
+Fin
