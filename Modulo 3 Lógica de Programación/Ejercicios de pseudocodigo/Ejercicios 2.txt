@@ -1,0 +1,83 @@
+1. Numeros Mayor a Menor
+
+INICIO
+
+1. Definir primerNumero
+2. Definir segundoNumero
+3. Definir Orden
+
+4. Mostrar "Ingrese Primer numero"
+5. Pedir primerNumero
+
+6. Mostrar "Ingrese Segundo numero"
+7. Pedir segundoNumero
+
+8. Si( primerNumero <= segundoNumero ) entonces:
+   1. Orden = "A:", primerNumero "B:", segundoNumero
+
+   Sino:
+   1. Orden = "A:", segundoNumero "B:", primerNumero
+9. FinSi
+
+10. Mostrar Orden
+
+Fin
+
+
+
+
+
+
+2. km/h a m/s
+
+INICIO
+
+1. Definir velocidadkm
+2. Definir velocidadM
+
+3. Mostrar "Ingrese velocidad en km/h"
+4. Pedir velocidadkm
+
+5. velocidadM = velocidadkm // 3.6
+
+6. Mostrar "La velocidad convertida a m/s es:"
+7. Mostrar velocidadM
+
+Fin
+
+
+
+
+
+
+3. Porcentaje de hombres y mujeres
+
+INICIO
+
+1. Definir hombres
+2. Definir mujeres
+3. Definir contador
+4. Definir Persona
+5. Definir porcentajeHombre
+6. Definir porcentajeMujeres
+
+6. Mientras contador <= 6 hacer:
+   1. Mostrar "Ingrese el sexo de la persona '1' para Mujer '2' para Hombre"
+   2. Pedir Persona
+   
+   3. Si (Persona == 1) entonces:
+      1. mujeres = mujeres + 1
+   
+   4. Sino:
+      1. Si (Persona == 2) entonces:
+	      1. hombres = hombres + 1
+	  2. FinSi
+   5. FinSi
+7. FinMientras 
+
+8. porcentajeHombre = (hombres * 100) // 6
+9. porcentajeMujeres = (mujeres * 100) // 6
+
+10. Mostrar porcentajeHombre,"% Hombres y" porcentajeMujeres,"% Mujeres"   
+
+Fin

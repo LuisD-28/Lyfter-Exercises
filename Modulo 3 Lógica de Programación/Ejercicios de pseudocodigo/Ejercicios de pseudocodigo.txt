@@ -1,0 +1,89 @@
+1.Precio de Producto
+
+INICIO
+
+1. Definir precio_de_producto
+2. Definir descuento
+3. Definir precio_Final
+
+4. Mostrar "Ingrese Precio del producto"
+5. pedir precio_de_producto
+
+6. Si ( precio_de_producto < 100) entonces:
+   1. descuento = precio_de_producto * 0.02
+   
+7. Sino:
+   1. descuento = precio_de_producto * 0.1
+8. FinSi
+
+9. precio_Final = precio_de_producto - descuento
+
+10. Mostrar "El precio final es de"
+11. Mostrar precio_Final
+
+FIN
+
+
+
+
+
+      
+2.Tiempo en Segundos	  
+	  
+INICIO
+
+1. Definir tiempo_en_segundos
+2. Definir tiempo_calculado
+3. Definir minutos
+4. Definir diezMinutos_en_segundos = 600
+5. Definir segundosFaltantes
+ 
+6. Mostrar "Ingrese el tiempo en segundos a calcular"
+7. Pedir tiempo_en_segundos
+
+8. Convertir segundos a minutos
+   1. minutos = tiempo_en_segundos // 60
+  
+9. Si (minutos < 10) 
+   1. segundosFaltantes = diezMinutos_en_segundos - tiempo_en_segundos
+   2. tiempo_calculado = "Segundos faltantes para llegar a 10 minutos:", segundosFaltantes
+   
+10. Sino:
+   1. Si ( minutos == 10 ) 
+       1. tiempo_calculado = "El tiempo en segundos es igual a 10 minutos"
+   2. Sino:
+	   1. tiempo_calculado = "El tiempo calculado es mayor a 10 minutos"
+
+11. FinSi	   
+ 
+12. Mostrar tiempo_calculado
+	  
+Fin
+
+
+
+3.Suma de numeros
+
+INICIO
+
+1. Definir numeroIngresado
+2. Definir suma
+3. Definir contador
+
+4. suma = 0
+5. contador = 1
+
+6. Mostrar "Ingrese un numero"
+7. Pedir numeroIngresado
+
+4. Mientras que (contador <= numeroIngresado) hacer:
+    suma = suma + contador
+	contador = contador + 1
+5. FinMientras
+
+6. Mostrar "La suma de cada numero del 1 hasta el número ingresado es:"
+7. Mostrar suma
+
+Fin
+    
+	  
