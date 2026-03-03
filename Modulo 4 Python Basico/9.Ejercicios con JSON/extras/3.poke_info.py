@@ -1,9 +1,13 @@
 import json
+import os
 
 def load_poke_list():
     
+    Base_dir = os.path.dirname(os.path.abspath(__file__))
+    path_pokeJSON_file = os.path.join(Base_dir, 'pokemons.json')
+
     #por alguna extraña razon, al usar la ruta raiz no me funciona, por lo que tuve que usar la ruta completa
-    with open('D:\\lyfter\\Modulo 4 Python Basico\\9.Ejercicios con JSON\\extras\\pokemons.json', 'r', encoding='utf-8') as f:
+    with open(path_pokeJSON_file, 'r', encoding='utf-8') as f:
         pokemons = json.load(f)
 
         for p in pokemons:

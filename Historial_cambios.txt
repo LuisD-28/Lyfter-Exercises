@@ -1,3 +1,4 @@
+############################################################################################################
 commit c7f59ebcbccd7f70def7621e743b38620b43a95e (origin/past-exercises, past-exercises)
 Author: Luis D <luiss.dorantes@gmail.com>
 Date:   Sun Mar 1 15:17:59 2026 -0600
@@ -5,3 +6,14 @@ Date:   Sun Mar 1 15:17:59 2026 -0600
     all the exercises we've done so far
 
 Primer commit hecho para migrar todos los ejercicios realizados hasta ahora a git
+
+#############################################################################################################
+commit 4debd83ff9bc1c495f84a19144c7916491841b5c (origin/correctionsJsonexercices, correctionsJsonexercices)
+Author: Luis D <luiss.dorantes@gmail.com>
+Date:   Mon Mar 2 20:37:02 2026 -0600
+
+    Cambios requeridos en los ejercicios con JSON
+
+Segundo commit hecho para correjir errores en los ejercicios 2, 3 y 4 de JSON
+
+#############################################################################################################

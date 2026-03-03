@@ -31,16 +31,16 @@ def usr_input_save():
     with open('videojuegos.csv', 'a', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
         writer.writerow([name, gender, Developer, classification])
-    print('Informacion guardada. \n')
+    print('Información guardada. \n')
 
 
 def videogame_info():
         usr_input_save()
         while True:
             try:
-                option = input('Deseas agregar otro juego? escribe "si" o "no": ').strip().lower()
+                option = input('¿Deseas agregar otro juego? Escribe "si" o "no": ').strip().lower()
                 if option not in ('s','n','si','no'):
-                    print('---------Opcion invalida---------')
+                    print('---------Opción inválida---------')
                     continue
                 if option in ('s','si'):
                     usr_input_save()
