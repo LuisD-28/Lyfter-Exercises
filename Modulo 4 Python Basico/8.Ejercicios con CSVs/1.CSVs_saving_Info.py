@@ -21,10 +21,10 @@ def read_csv_file():
 
 def usr_input_save():
 
-    print('Ingresa la informacion de los videojuegos que deseas almacenar \n')
+    print('Ingresa la información de los videojuegos que deseas almacenar \n')
     name = input('Nombre: ')
     gender = input('Género: ')
-    Developer = input('Desarollador: ')
+    Developer = input('Desarrollador: ')
     classification = input('Clasificación ESRB: ')
 
 

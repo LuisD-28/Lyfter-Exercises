@@ -1,0 +1,7 @@
+commit c7f59ebcbccd7f70def7621e743b38620b43a95e (origin/past-exercises, past-exercises)
+Author: Luis D <luiss.dorantes@gmail.com>
+Date:   Sun Mar 1 15:17:59 2026 -0600
+
+    all the exercises we've done so far
+
+Primer commit hecho para migrar todos los ejercicios realizados hasta ahora a git
