@@ -1,12 +1,15 @@
 import json
+import os
 
 def getpoke_by_type(usr_type_input):
-    
+    Base_dir = os.path.dirname(os.path.abspath(__file__))
+    path_pokeJSON_file = os.path.join(Base_dir, 'pokemons.json')
+
     poke_list = []
 
     usr_type_input = usr_type_input.lower()
 
-    with open('D:\\lyfter\\Modulo 4 Python Basico\\9.Ejercicios con JSON\\extras\\pokemons.json', 'r', encoding='utf-8') as f:
+    with open(path_pokeJSON_file, 'r', encoding='utf-8') as f:
         pokemons = json.load(f)
 
     for p in pokemons:

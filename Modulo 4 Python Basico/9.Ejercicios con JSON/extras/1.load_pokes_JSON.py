@@ -1,8 +1,11 @@
 import json
+import os
 
 def load_poke_list():
+    Base_dir = os.path.dirname(os.path.abspath(__file__))
+    path_pokeJSON_file = os.path.join(Base_dir, 'pokemons.json')
 
-    with open('pokemons.json', 'r', encoding='utf-8') as f:
+    with open(path_pokeJSON_file, 'r', encoding='utf-8') as f:
         pokemons = json.load(f)
 
         for p in pokemons:
