@@ -1,39 +1,33 @@
 import json
 
-def getpoke_by_type(usr_tipe_input):
-    coincidence = False
-
-    usr_tipe_input = usr_tipe_input.lower()
-
-    with open('pokemons.json', 'r', encoding='utf-8') as f:
-        pokemons = json.load(f)
-
-    for p in pokemons:
-        types = p.get('type')
-        alltypes = [t.lower() for t in types]
-
-        if usr_tipe_input in alltypes:
-            coincidence = True
-
-    if coincidence == True:
-        load_pokemon(usr_tipe_input)
-    else:
-        print(f'No se ecnontro ningun pokémon del tipo: {usr_tipe_input}')
-
-
-def load_pokemon(usr_tipe_input):
-    with open('pokemons.json', 'r', encoding='utf-8') as f:
-        pokemons = json.load(f)
+def getpoke_by_type(usr_type_input):
     
-    print(f'Los pokemons que existen del tipo "{usr_tipe_input}" son: ')
+    poke_list = []
+
+    usr_type_input = usr_type_input.lower()
+
+    with open('D:\\lyfter\\Modulo 4 Python Basico\\9.Ejercicios con JSON\\extras\\pokemons.json', 'r', encoding='utf-8') as f:
+        pokemons = json.load(f)
 
     for p in pokemons:
         types = p.get('type')
         alltypes = [t.lower() for t in types]
 
-        if usr_tipe_input in alltypes:
+        if usr_type_input in alltypes:
             for name in p.get('name').values():
-                print(name)
+                lvl = p.get('level')
+                poke_list.append(f'{name} (Level: {lvl})')
+
+
+
+#################################################################################################
+    if poke_list:
+        print(f'Los pokemons que existen del tipo "{usr_type_input}" son: ')
+        for poke in poke_list:
+            print(poke)
+    else:
+        print(f'No se encontraron pokemons del tipo "{usr_type_input}"')
+
 
 
 
@@ -54,13 +48,10 @@ def new_search():
 
 
 
-
-
-
 def main():
     while True:
-        usr_tipe_input = input('Ingrese el tipo de pokemon desea buscar: ')
-        getpoke_by_type(usr_tipe_input)
+        usr_type_input = input('Ingrese el tipo de pokemon desea buscar: ')
+        getpoke_by_type(usr_type_input)
     
         if not new_search():
             print('Busqueda finalizada')
