@@ -1,7 +1,5 @@
-
-import csv
-import os
-from students.validators import *
+import students.actions as actions
+import students.validators as validators
 # get_student_name, get_student_group, get_grade, validate_if_students_exist, validate_students_list
 
 
@@ -9,12 +7,12 @@ def add_student(students):
 
     while True:
         try:
-            name = get_student_name()
-            group = get_student_group()
-            spanish_grade = get_grade('Spanish')
-            english_grade = get_grade('English')
-            socials_grade = get_grade('Socials')
-            science_grade = get_grade('Science')
+            name = validators.get_student_name()
+            group = validators.get_student_group()
+            spanish_grade = validators.get_grade('Spanish')
+            english_grade = validators.get_grade('English')
+            socials_grade = validators.get_grade('Socials')
+            science_grade = validators.get_grade('Science')
 
         except ValueError:
             print('Invalid input. Please enter a valid number.')
@@ -31,7 +29,7 @@ def add_student(students):
             },
         }
         
-        if validate_if_students_exist(students, name, group):
+        if validators.validate_if_students_exist(students, name, group):
             print(f'Student {name} from group {group} already exists. Please enter a different student.')
             continue
         else:
@@ -87,17 +85,17 @@ def delete_student(students):
 def get_all_students(students):
     while True:
         if not students:
-            option = menu_empty_students_list()
+            option = validators.menu_empty_students_list()
             if option == 'back':
                 return students
             elif option == 'add':
-                add_student(students)
+                actions.add_student(students)
         else:
             print("\n=== All Students ===")
             for student in students:
                 print(f"Name: {student['name']}, Group: {student['group']}, Spanish Grade: {student['grades']['spanish']}, English Grade: {student['grades']['english']}, Socials Grade: {student['grades']['socials']}, Science Grade: {student['grades']['science']}")
 
-            option = menu_navigation_students_list()
+            option = validators.menu_navigation_students_list()
             if option == 'back':
                 return students
             if option == 'delete':
@@ -109,39 +107,43 @@ def get_all_students(students):
 def get_top_students(students):
     while True:
         if not students:
-            option = menu_empty_students_list()
+            option = validators.menu_empty_students_list()
             if option == 'back':
                 return students
             elif option == 'add':
-                add_student(students)
+                actions.add_student(students)
         else:        
+            
             students_avg = get_students_average(students)
 
-            #con lambda x: x['average'] estamos diciendo que queremos ordenar la lista de estudiantes por el valor de la clave 'average' en cada diccionario
+            if len(students_avg) < 3:
+                print("\nNot enough students to display the top 3. Please add more students.")
 
-            students_avg.sort(key=lambda x: x['average'], reverse=True)
-            top_students = students_avg[:3]
-            print("\n=== Top 3 Students with the Highest Average Grade ===")
-            for student in top_students:
-                print(f"Name: {student['name']}, Group: {student['group']}, Average Grade: {student['average']}")
-            
-            option = menu_navigation_students_list()
+            else:
+                #con lambda x: x['average'] estamos diciendo que queremos ordenar la lista de estudiantes por el valor de la clave 'average' en cada diccionario
+                students_avg.sort(key=lambda x: x['average'], reverse=True)
+                top_students = students_avg[:3]
+                print("\n=== Top 3 Students with the Highest Average Grade ===\n")
+                for student in top_students:
+                    print(f"Name: {student['name']}, Group: {student['group']}, Average Grade: {student['average']}")
+                
+            option = validators.menu_navigation_students_list()
             if option == 'back':
                 return students
             if option == 'delete':
-                delete_student(students)
+                actions.delete_student(students)
             if option == 'add':
-                add_student(students)
+                actions.add_student(students)
 
 
 def get_failed_students(students):
     while True:
         if not students:
-            option = menu_empty_students_list()
+            option = validators.menu_empty_students_list()
             if option == 'back':
                 return students
             elif option == 'add':
-                add_student(students)
+                actions.add_student(students)
         else:
 
             print("\n=== Failed Students (Average Grade Below 60 and/or one or more failed subjects) ===")
@@ -160,38 +162,53 @@ def get_failed_students(students):
                     print(f"Name: {name}, Group: {group}, Average Grade: {avg}, Failed Subject(s): {failed_students}")
 
                     # menu_options_students_list(students)
-            option = menu_navigation_students_list()
+            option = validators.menu_navigation_students_list()
             
             if option == 'back':
                 return students
             if option == 'delete':
-                delete_student(students)
+                actions.delete_student(students)
             if option == 'add':
-                add_student(students)
+                actions.add_student(students)
 
 
 def students_avg(students):
-    stundets_avg = get_students_average(students)
+    
+    students_avg = get_students_average(students)
 
     while True:
         if not students:
-            option = menu_empty_students_list()
+            option = validators.menu_empty_students_list()
             if option == 'back':
                 return students
             elif option == 'add':
-                add_student(students)
+                actions.add_student(students)
         else:
-            print("\n=== Grade Average by Student ===")
-            for student in stundets_avg: 
+
+            print("\n=== Overall Students Average ===")
+            overall_avg = sum(student['average'] for student in students_avg) / len(students_avg)
+
+            print(f"\nOverall Average Grade: {overall_avg:.2f}\n")
+
+
+
+            print("Students average ordered by group:")
+            for student in sorted(students_avg, key=lambda x: x['group']):
                 print(f"Name: {student['name']}, Group: {student['group']}, Average Grade: {student['average']}")
+
+
             
-            option = menu_navigation_students_list()
+            # print("\n=== Grade Average by Student ===")
+            # for student in students_avg: 
+            #     print(f"Name: {student['name']}, Group: {student['group']}, Average Grade: {student['average']}")
+            
+            option = validators.menu_navigation_students_list()
             if option == 'back':
                 return students
             if option == 'delete':
-                delete_student(students)
+                actions.delete_student(students)
             if option == 'add':
-                add_student(students)
+                actions.add_student(students)
 
 
 
@@ -204,144 +221,98 @@ def get_students_average(students):
     return students_avg
 
 
+
+
 # def export_students_to_csv(students):
 #     while True:
 #         if not students:
-#             option = menu_empty_students_list()
+#             option = validators.menu_empty_students_list()
 #             if option == 'back':
 #                 return students
 #             elif option == 'add':
 #                 add_student(students)
 #         else:
-#             verify_csv_file()
+#             subjects = set()
+#             for estudent in students:
+#                 subjects.update(estudent['grades'].keys())
+#             subjects = sorted(subjects)
 
-#             with open('students.csv', 'a', newline='', encoding='utf-8') as file:
-#                 writer = csv.writer(file)
-#                 writer.writerow(['Student full name', 'Group', 'Spanish grade', 'English grade', 'Socials grade', 'Science grade'])
+#             headers = ['Student full name', 'Group'] + [f'{subject.capitalize()} grade' for subject in subjects]
+
+#             # file_exists = os.path.isfile('students.csv')
+#             # empty_file = False
+
+#             # if file_exists:
+#             #     empty_file = os.path.getsize('students.csv') == 0
+
+#             with open('students.csv', 'w', newline='', encoding='utf-8') as file:
+#                 writer = csv.DictWriter(file, fieldnames=headers)
+#                 writer.writeheader()
+#                 # if not file_exists or empty_file:
+#                 #     writer.writeheader()
+
 #                 for student in students:
-#                     writer.writerow([student['name'], student['group'], student['grades']['spanish'], student['grades']['english'], student['grades']['socials'], student['grades']['science']])
+#                     row = {
+#                         'Student full name': student['name'],
+#                         'Group': student['group']
+#                     }
+#                     for subject in subjects:
+#                         row[f'{subject.capitalize()} grade'] = student['grades'].get(subject, '')
+#                     writer.writerow(row)
             
-#             print('Students data exported successfully to students.csv')
+#             print('\nStudents data exported successfully to students.csv and the actual students list has been cleared.')
+#             print('\nType "back" to return to main menu')
+#             valid_options = ('back',)
+#             while True:
+#                 option = input('Enter your option: ').strip().lower()
 
-#             return students
-
-
-
-
-
-# def verify_csv_file():#csv
-
-#     Students_inf_headers = ('Student full name',
-#                     'Group',
-#                     'Spanish grade',
-#                     'English grade',
-#                     'Socials grade',
-#                     'Science grade'
-#     )
-
-
-#     try:
-#         with open('students.csv', 'r', encoding='utf-8') as file:
-#             exist = True
-#     except FileNotFoundError:
-#         exist = False
-        
-#     with open('students.csv', 'w', newline='', encoding='utf-8') as file:
-#         if not exist:
-#             writer = csv.DictWriter(file, Students_inf_headers)
-#             writer.writeheader()
-
-
-def export_students_to_csv(students):
-    while True:
-        if not students:
-            option = menu_empty_students_list()
-            if option == 'back':
-                return students
-            elif option == 'add':
-                add_student(students)
-        else:
-            subjects = set()
-            for estudent in students:
-                subjects.update(estudent['grades'].keys())
-            subjects = sorted(subjects)
-
-            headers = ['Student full name', 'Group'] + [f'{subject.capitalize()} grade' for subject in subjects]
-
-            file_exists = os.path.isfile('students.csv')
-            empty_file = False
-
-            if file_exists:
-                empty_file = os.path.getsize('students.csv') == 0
-
-            with open('students.csv', 'w', newline='', encoding='utf-8') as file:
-                writer = csv.DictWriter(file, fieldnames=headers)
-                writer.writeheader()
-                # if not file_exists or empty_file:
-                #     writer.writeheader()
-
-                for student in students:
-                    row = {
-                        'Student full name': student['name'],
-                        'Group': student['group']
-                    }
-                    for subject in subjects:
-                        row[f'{subject.capitalize()} grade'] = student['grades'].get(subject, '')
-                    writer.writerow(row)
-            
-            print('\nStudents data exported successfully to students.csv and the actual students list has been cleared.')
-            print('\nType "back" to return to main menu')
-            valid_options = ('back',)
-            while True:
-                option = input('Enter your option: ').strip().lower()
-
-                if option in valid_options:
-                    students.clear()
-                    return 
+#                 if option in valid_options:
+#                     students.clear()
+#                     return 
                 
-                print('Invalid input. Please enter "back" to go back to the main menu.')
+#                 print('Invalid input. Please enter "back" to go back to the main menu.')
 
 
-def import_students_csv(students):
-    while True:
-        if not os.path.isfile('students.csv'):
-            print('\nNo students.csv file found. Please export students data to a CSV file first.')
-            print('\nType "back" to return to the main menu or "add" to add a student.')
-            valid_options = ('back')
-            while True:
-                option = input('Enter your option: ').strip().lower()
+# def import_students_csv(students):
+#     while True:
+#         if not os.path.isfile('students.csv'):
+#             print('\nNo students.csv file found. Please export students data to a CSV file first.')
+#             print('\nType "back" to return to the main menu or "add" to add a student.')
+#             valid_options = ('back')
+#             while True:
+#                 option = input('Enter your option: ').strip().lower()
 
-                if option == 'back':
-                    return students
-                print('Invalid input. Please enter "back" to go back to the main menu.')
+#                 if option == 'back':
+#                     return students
+#                 print('Invalid input. Please enter "back" to go back to the main menu.')
 
         
-        with open('students.csv', 'r', encoding='utf-8') as file:
-            reader = csv.DictReader(file)
+#         with open('students.csv', 'r', encoding='utf-8') as file:
+#             reader = csv.DictReader(file)
 
-            for row in reader:
-                student = {
-                    'name': row['Student full name'],
-                    'group': row['Group'],
-                    'grades': {
-                        'spanish': float(row.get('Spanish grade', 0)),
-                        'english': float(row.get('English grade', 0)),
-                        'socials': float(row.get('Socials grade', 0)),
-                        'science': float(row.get('Science grade', 0))
-                    }
-                }
-                students.append(student)
+#             for row in reader:
+#                 student = {
+#                     'name': row['Student full name'],
+#                     'group': row['Group'],
+#                     'grades': {
+#                         'spanish': float(row.get('Spanish grade', 0)),
+#                         'english': float(row.get('English grade', 0)),
+#                         'socials': float(row.get('Socials grade', 0)),
+#                         'science': float(row.get('Science grade', 0))
+#                     }
+#                 }
+#                 students.append(student)
 
-        print('\nStudents data imported successfully from students.csv')
-        print('Type "back" to return to main menu')
-        valid_options = ('back',)
-        while True:
-            option = input('Enter your option: ').strip().lower()
+#         print('\nStudents data imported successfully from students.csv')
+#         print('Type "back" to return to main menu')
+#         valid_options = ('back',)
+#         while True:
+#             option = input('Enter your option: ').strip().lower()
 
-            if option in valid_options:
-                return students
+#             if option in valid_options:
+#                 return students
             
-            print('Invalid input. Please enter "back" to go back to the main menu.')
+#             print('Invalid input. Please enter "back" to go back to the main menu.')
 
 
 

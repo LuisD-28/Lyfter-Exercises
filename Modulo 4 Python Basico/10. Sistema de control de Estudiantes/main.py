@@ -1,3 +1,4 @@
+from students import data
 from students import actions
 
 
@@ -10,7 +11,7 @@ def load_main_menu():
         print('2. View all students')
         print('3. View the top 3 students with the highest average grade')
         print('4. View all the failed students (average grade below 60)')
-        print('5. View the grade average by student')
+        print("5. View Students' overall average")
         print('6. Export the students data to a CSV file')
         print('7. Import students data from a CSV file')
         print('8. Exit')
@@ -20,8 +21,8 @@ def load_main_menu():
                 print("Invalid option. Please enter a number between 1 and 8.")
                 continue
             elif option == 8:
-                print("Exiting the program...")
-                break
+                print("Exiting the program. Goodbye!")
+                exit()
         except ValueError:
             print("Invalid input. Please enter a number between 1 and 8.")
         
@@ -42,12 +43,12 @@ def main():
             actions.get_top_students(students)
         elif option == 4:#View all the failed students (average grade below 60)
             actions.get_failed_students(students)
-        elif option == 5:#View the grade average by student
+        elif option == 5:#View Students' overall average
             actions.students_avg(students)
         elif option == 6:#Export the students data to a CSV file
-            actions.export_students_to_csv(students)
+            data.export_students_to_csv(students)
         elif option == 7:#Import students data from a CSV file
-            actions.import_students_csv(students)
+            data.import_students_csv(students)
 
 
 
