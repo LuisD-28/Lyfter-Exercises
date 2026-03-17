@@ -2,7 +2,7 @@ def validate_numbers(func):
     def review(*args):
         for valor in args:
             if not isinstance(valor, (int, float)):
-                return 'Error: todos los parametros deben ser numeros'
+                raise Exception('Error: todos los parametros deben ser numeros')
         return func(*args)
     return review
 
@@ -12,6 +12,8 @@ def validate_numbers(func):
 def add(a, b):
     return a + b
 
-
-print(add(3, 4))
-print(add(3, 'Hola'))
+try:
+    print(add(3, 4))
+    print(add(3, 'Hola'))
+except Exception as e:
+    print(e)
