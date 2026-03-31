@@ -102,12 +102,6 @@ class Queue:
 
         return passes, swaps
 
-# s = Stack()
-# s.push(5)
-# s.push("hola")
-# s.push(3)
-
-
 d = Queue()
 
 d.push_left(5)
