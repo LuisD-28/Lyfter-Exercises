@@ -1,31 +1,34 @@
-def bubble_sort(list):
-    n = len(list)
+def bubble_sort(lst):
+    if not isinstance(lst, list):
+        raise TypeError("El argumento debe ser una lista.")
+    
+    n = len(lst)
     for i in range(n):
         for j in range(0, n-i-1):
-            if list[j] > list[j+1]:
-                list[j], list[j+1] = list[j+1], list[j]
-    return list
+            if lst[j] > lst[j+1]:
+                lst[j], lst[j+1] = lst[j+1], lst[j]
+    return lst
 
 
 
-list = [64, 34, 25, 12, 22, 11, 90]
-print("Lista original:", list)
-sorted_list = bubble_sort(list)
+lst = [64, 34, 25, 12, 22, 11, 90]
+print("Lista original:", lst)
+sorted_list = bubble_sort(lst)
 print("Lista ordenada:", sorted_list) 
 
 
 # Ejercicio 2: Modificar el bubble sort para que ordene de derecha a izquierda.
-def bubble_sort_right_to_left(list):
-    n = len(list)
+def bubble_sort_right_to_left(lst):
+    n = len(lst)
     for i in range(n):
         for j in range(n - 1, i, -1):
-            if list[j] < list[j - 1]:
-                list[j], list[j - 1] = list[j - 1], list[j]
-    return list
+            if lst[j] < lst[j - 1]:
+                lst[j], lst[j - 1] = lst[j - 1], lst[j]
+    return lst
 
 
 
-list = [64, 34, 25, 12, 22, 11, 90]
-print("Lista original:", list)
-sorted_list = bubble_sort_right_to_left(list)
+lst = [64, 34, 25, 12, 22, 11, 90]
+print("Lista original:", lst)
+sorted_list = bubble_sort_right_to_left(lst)
 print("Lista ordenada de derecha a izquierda:", sorted_list)

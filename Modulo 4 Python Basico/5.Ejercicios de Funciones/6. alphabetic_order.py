@@ -1,4 +1,6 @@
 def alphabetic_order(alph_list):
+    if not isinstance(alph_list, str):
+        raise TypeError("Input must be a string")
     new_list = sorted(alph_list)
     print('String ordenada:')
 
