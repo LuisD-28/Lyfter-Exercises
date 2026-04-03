@@ -1,4 +1,6 @@
 def ordered_string(my_string):
+    if not isinstance(my_string, str):
+        raise TypeError("Input must be a string")
     print('string original:', my_string)
     inverted_string = my_string[::-1] 
 
