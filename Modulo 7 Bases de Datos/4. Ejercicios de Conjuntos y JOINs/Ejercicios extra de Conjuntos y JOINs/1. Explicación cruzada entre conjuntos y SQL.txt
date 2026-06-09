@@ -1,0 +1,28 @@
+Analizando la operacion de conjuntos All - Odd
+All = {1,2,3,4,5,6,7,8,9,10}
+Odd = {1,3,5,7,9}
+
+Significa: Todos los elementos que estan en All pero no estan en odd.
+Resultado: {2,4,6,8,10}
+
+como podria representarse en SQL y que tipo de JOIN usaria?
+En teoria de conjuntos este tipo de operaciones se basan en comparar elementos entre dos conjuntos.
+En SQL se pueden hacer comparaciones entre dos tablas usando JOINs
+
+para All − Odd = {2,4,6,8,10} Lo ideal seria usar un LEFT JOIN + WHERE NULL por que:
+LEFT JOIN trae todos los elementos de A.
+Si un elemento de A no existe en B los campos de B quedan en NULL
+
+Ejemplo:
+
+SELECT A.value
+FROM AllSet A
+LEFT JOIN OddSet B
+ON A.value = B.value
+WHERE B.value IS NULL;
+
+Filtrar por WHERE B.value IS NULL equivale a elementos que estan en All pero no estan en odd.
+
+
+
+    
