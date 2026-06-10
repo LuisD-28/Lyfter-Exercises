@@ -45,5 +45,9 @@ CREATE TABLE ejercicios_transacciones.BillProducts (
         FOREIGN KEY (product_id) REFERENCES ejercicios_transacciones.Products(product_id)
 );
 
+-- Columna status en Bills
+ALTER TABLE ejercicios_transacciones.Bills
+ADD COLUMN status VARCHAR(20) NOT NULL DEFAULT 'Completada';
+
 
 

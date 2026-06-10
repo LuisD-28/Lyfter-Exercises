@@ -7,5 +7,11 @@ VALUES
 ('Mouse', 25, 50);
 
 
-SELECT * FROM ejercicios_transacciones.Users;
+UPDATE ejercicios_transacciones.Products
+SET stock = 5
+WHERE product_id = 1;
+
+
 SELECT * FROM ejercicios_transacciones.Products;
+SELECT * FROM ejercicios_transacciones.Bills;
+SELECT * FROM ejercicios_transacciones.BillProducts;
