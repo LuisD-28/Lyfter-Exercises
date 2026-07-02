@@ -21,31 +21,41 @@ car_repo = CarRepository(db)
 @app.route('/users', methods=['POST']) 
 def create_user():
     data = request.json
-    user_repo.create_user(
+    success = user_repo.create_user(
         data['full_name'],
         data['email'],
         data['username'],
         data['password'],
         data['birth_date']
     )
-    return jsonify({"message": "User created successfully"}), 201
-
+    if success:
+        return jsonify({"message": "User created successfully"}), 201
+    else:
+        return jsonify({"message": "Failed to create user"}), 400
+    
 # Update user status
 @app.route('/users/<int:user_id>/status', methods=['PUT'])
 def update_user_status(user_id):
     data = request.json
-    user_repo.update_user_status(
+    success = user_repo.update_user_status(
         user_id,
         data['account_status']
     )
-    return jsonify({"message": "User status updated successfully"}), 200
+    if success:
+        return jsonify({"message": "User status updated successfully"}), 200
+    else:
+        return jsonify({"message": "Failed to update user status"}), 400
 
 # Flag user as blocked
 @app.route('/users/<int:user_id>/block', methods=['PUT'])
 def flag_user_as_blocked(user_id):
-    user_repo.flag_user_as_blocked(user_id)
-    return jsonify({"message": "User flagged as blocked successfully"}), 200
+    success = user_repo.flag_user_as_blocked(user_id)
+    if success:
+        return jsonify({"message": "User flagged as blocked successfully"}), 200
+    else:
+        return jsonify({"message": "Failed to flag user as blocked"}), 400
 
+# TODO Get data and turn it into a dictionary
 # Get users list with optional filters
 @app.route('/users', methods=['GET'])
 def get_users():
@@ -57,23 +67,30 @@ def get_users():
 @app.route('/cars', methods=['POST'])
 def create_car():
     data = request.json
-    car_repo.create_car(
+    success = car_repo.create_car(
         data['brand'],
         data['model'],
         data['year']
     )
-    return jsonify({"message": "Car created successfully"}), 201
+    if success:
+        return jsonify({"message": "Car created successfully"}), 201
+    else:
+        return jsonify({"message": "Failed to create car"}), 400
 
 # Update car status
 @app.route('/cars/<int:car_id>/status', methods=['PUT'])
 def update_car_status(car_id):
     data = request.json
-    car_repo.update_car_status(
+    success = car_repo.update_car_status(
         car_id,
         data['car_status']
     )
-    return jsonify({"message": "Car status updated successfully"}), 200
+    if success:
+        return jsonify({"message": "Car status updated successfully"}), 200
+    else:
+        return jsonify({"message": "Failed to update car status"}), 400
 
+# TODO
 # Get cars list with optional filters
 @app.route('/cars', methods=['GET'])
 def get_cars():
@@ -85,28 +102,38 @@ def get_cars():
 @app.route('/rentals', methods=['POST'])
 def create_rental():
     data = request.json
-    rental_repo.create_rental(
+    success, message = rental_repo.create_rental(
         data['user_id'],
         data['car_id']
     )
-    return jsonify({"message": "Rental created successfully"}), 201
+    if success:
+        return jsonify({"message": message}), 201
+    else:
+        return jsonify({"message": message }), 400
 
 # Complete a rental
 @app.route('/rentals/<int:rental_id>/complete', methods=['PUT'])
 def complete_rental(rental_id):
-    rental_repo.complete_rental(rental_id)
-    return jsonify({"message": "Rental completed successfully"}), 200
+    success = rental_repo.complete_rental(rental_id)
+    if success:
+        return jsonify({"message": "Rental completed successfully"}), 200
+    else:
+        return jsonify({"message": "Failed to complete rental"}), 400
 
 # Update rental status
 @app.route('/rentals/<int:rental_id>/status', methods=['PUT'])
 def update_rental_status(rental_id):
     data = request.json
-    rental_repo.update_rental_status(
+    success = rental_repo.update_rental_status(
         rental_id,
         data['rental_status']
     )
-    return jsonify({"message": "Rental status updated successfully"}), 200
+    if success:
+        return jsonify({"message": "Rental status updated successfully"}), 200
+    else:
+        return jsonify({"message": "Failed to update rental status"}), 400
 
+# TODO
 # Get rentals list with optional filters
 @app.route('/rentals', methods=['GET'])
 def get_rentals():

@@ -48,8 +48,24 @@ class UserRepository:
                     params.append(value)
                 query += " WHERE " + " AND ".join(conditions)
 
-            result = self.db.execute_query(query, params if params else None)
-            return result
+            results = self.db.execute_query(query, params if params else None)
+
+            if not results:
+                return []
+            
+            formatted_users = [self._format_user(user) for user in results]
+            return formatted_users
         except Exception as e:
             print(f"Error retrieving users: {e}")
             return False
+    
+    #  Format user data into a dictionary, encapsuling the logic for data representation 
+    def _format_user(self, user_record):
+        return {
+            "id": user_record[0],
+            "full_name": user_record[1],
+            "email": user_record[2],
+            "username": user_record[3],
+            "birth_date": user_record[5].strftime("%Y-%m-%d"),
+            "account_status": user_record[6]
+        }

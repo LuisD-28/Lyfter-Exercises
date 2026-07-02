@@ -36,8 +36,24 @@ class CarRepository:
                     params.append(value)
                 query += " WHERE " + " AND ".join(conditions)
             
-            result = self.db.execute_query(query, params if params else None)
-            return result
+            results = self.db.execute_query(query, params if params else None)
+
+            if not results:
+                return []
+            
+            formatted_cars = [self._format_car(car) for car in results]
+            return formatted_cars
+        
         except Exception as e:
             print(f"Error retrieving cars: {e}")
             return False
+    
+    #  Format car data into a dictionary, encapsuling the logic for data representation 
+    def _format_car(self, car_record):
+        return {
+            "id": car_record[0],
+            "brand": car_record[1],
+            "model": car_record[2],
+            "manufacture_year": car_record[3],
+            "car_status": car_record[4]
+        }
