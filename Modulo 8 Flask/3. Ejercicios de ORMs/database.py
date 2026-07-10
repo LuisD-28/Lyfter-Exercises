@@ -1,9 +1,12 @@
-from sqlalchemy import create_engine, inspect, text
+from sqlalchemy import create_engine, inspect
 from sqlalchemy.schema import CreateSchema
+from sqlalchemy.orm import sessionmaker
 from models import Base
 
 DB_URL = 'postgresql://postgres:280596@localhost:5432/postgres'
 engine = create_engine(DB_URL)
+SessionLocal = sessionmaker(bind=engine)
+
 
 SCHEMA_NAME = 'sqlalchemy'
 
@@ -49,8 +52,7 @@ def validate_and_create_tables():
         print(f"An error occurred while creating tables: {e}")
 
 
-
-if __name__ == "__main__":
-    validate_connection()
-    validate_and_create_schema()
-    validate_and_create_tables()
+# if __name__ == "__main__":
+#     validate_connection()
+#     validate_and_create_schema()
+#     validate_and_create_tables()

@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import declarative_base, relationship
 
 Base = declarative_base()
@@ -29,7 +29,6 @@ class Address(Base):
 
     # FK, every address belongs to a user
     user_id = Column(Integer, ForeignKey('sqlalchemy.users.id'), nullable=False)
-
     user = relationship("User", back_populates="addresses")
 
 class Car(Base):
