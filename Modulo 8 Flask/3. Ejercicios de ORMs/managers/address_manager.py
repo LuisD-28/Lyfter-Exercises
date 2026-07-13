@@ -17,6 +17,7 @@ class AddressManager:
             session.refresh(address)
             return address
         
+    ALLOWED_UPDATE_FIELDS = {"street", "city", "state", "zip_code", "user_id"}
     def update_address(self, address_id, **kwargs):
         with SessionLocal() as session:
             address = session.get(Address, address_id)
@@ -24,8 +25,10 @@ class AddressManager:
                 return None
             
             for key, value in kwargs.items():
-                if hasattr(address, key):
+                if key in self.ALLOWED_UPDATE_FIELDS:
                     setattr(address, key, value)
+                else:
+                    print(f"Field Address '{key}' is not allowed to be updated.")
 
             session.commit()
             session.refresh(address)

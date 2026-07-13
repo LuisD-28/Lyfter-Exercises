@@ -15,7 +15,9 @@ class UserManager:
             session.commit()
             session.refresh(new_user)
             return new_user
-        
+    
+    # Only the fields listed in ALLOWED_UPDATE_FIELDS can be updated
+    ALLOWED_UPDATE_FIELDS = {"full_name", "email", "username", "password"}
     def update_user(self, user_id, **kwargs):
         with SessionLocal() as session:
             user = session.get(User, user_id)
@@ -23,8 +25,10 @@ class UserManager:
                 return None
             
             for key, value in kwargs.items():
-                if hasattr(user, key):
+                if key in self.ALLOWED_UPDATE_FIELDS:
                     setattr(user, key, value)
+                else:
+                    print(f"Field User'{key}' is not allowed to be updated.")
 
             session.commit()
             session.refresh(user)

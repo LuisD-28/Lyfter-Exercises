@@ -15,7 +15,8 @@ class CarManager:
             session.commit()
             session.refresh(car)
             return car
-        
+    
+    ALLOWED_UPDATE_FIELDS = {"brand", "model", "manufacture_year", "user_id"}
     def update_car(self, car_id, **kwargs):
         with SessionLocal() as session:
             car = session.get(Car, car_id)
@@ -23,8 +24,10 @@ class CarManager:
                 return None
             
             for key, value in kwargs.items():
-                if hasattr(car, key):
+                if key in self.ALLOWED_UPDATE_FIELDS:
                     setattr(car, key, value)
+                else:
+                    print(f"Field Car '{key}' is not allowed to be updated.")
 
             session.commit()
             session.refresh(car)
@@ -50,4 +53,14 @@ class CarManager:
     def get_car_by_id(self, car_id):
         with SessionLocal() as session:
             car = session.get(Car, car_id)
+            return car
+    
+    def delete_car(self, car_id):
+        with SessionLocal() as session:
+            car = session.get(Car, car_id)
+            if not car:
+                return None
+
+            session.delete(car)
+            session.commit()
             return car
