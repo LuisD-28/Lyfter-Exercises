@@ -79,6 +79,39 @@ class UserManager:
                     .options(joinedload(User.cars))
                     .all()
                 )
+            
+    def get_user_by_id(self, user_id):
+        with SessionLocal() as session:
+            return (
+                session.query(User)
+                .options(
+                    joinedload(User.cars),
+                    joinedload(User.addresses)
+                )
+                .filter(User.id == user_id)
+                .first()
+            )
+    
+    def print_user_details(self, User_id):
+        user = self.get_user_by_id(User_id)
+
+        if not user:
+            print(f"User with ID {User_id} not found.")
+            return
+        
+        print(f"\nUser ID: {user.id}, Name: {user.full_name}, Email: {user.email}, Username: {user.username}")
+
+        print("\nCars:")
+        if user.cars:
+            for car in user.cars:
+                print(f"  Car ID: {car.id}, brand: {car.brand}, Model: {car.model}, Year: {car.manufacture_year}")
+        else:
+            print("  No cars associated with this user.")
+
+        print("\nAddresses:")
+        for address in user.addresses:
+            print(f"  Address ID: {address.id}, Street: {address.street}, City: {address.city}, State: {address.state}, Zip Code: {address.zip_code}")
+
         
 
 

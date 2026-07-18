@@ -52,6 +52,10 @@ def run_exercise():
     for address in addresses_with_suite:
         print(f"Address ID: {address.id}, Street: {address.street}, City: {address.city}, State: {address.state}, Zip Code: {address.zip_code}, User ID: {address.user_id}")
 
+    # Print user details by ID
+    u.print_user_details(1) 
+    u.print_user_details(10)  
+
 
 
 

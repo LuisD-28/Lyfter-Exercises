@@ -43,6 +43,3 @@ class Car(Base):
     # FK optional, cars can belong to a user, but not all cars have owners
     user_id = Column(Integer, ForeignKey('sqlalchemy.users.id'), nullable=True)
     user = relationship("User", back_populates="cars")
-
-
-    
