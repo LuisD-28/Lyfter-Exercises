@@ -1,5 +1,6 @@
 from database import SessionLocal
 from models import Car, User
+from sqlalchemy.orm import joinedload
 
 class CarManager:
 
@@ -44,17 +45,7 @@ class CarManager:
             session.commit()
             session.refresh(car)
             return car
-        
-    def get_all_cars(self):
-        with SessionLocal() as session:
-            cars = session.query(Car).all()
-            return cars
-
-    def get_car_by_id(self, car_id):
-        with SessionLocal() as session:
-            car = session.get(Car, car_id)
-            return car
-        
+    
     def delete_car(self, car_id):
         with SessionLocal() as session:
             car = session.get(Car, car_id)
@@ -64,3 +55,35 @@ class CarManager:
             session.delete(car)
             session.commit()
             return car
+        
+    def get_cars(self, owner=None):
+        with SessionLocal() as session:
+
+            # Get all cars if no owner filter is provided
+            if owner is None:
+                return (
+                    session.query(Car)
+                    .options(joinedload(Car.user))
+                    .order_by(Car.id)
+                    .all()
+                )
+            
+            # Get cars that are assigned to users if owner is True
+            if owner is True:
+                return (
+                    session.query(Car)
+                    .filter(Car.user_id.isnot(None))
+                    .options(joinedload(Car.user))
+                    .order_by(Car.id)
+                    .all()
+                )
+            
+            # Get cars that are not assigned to users if owner is False
+            if owner is False:
+                return (
+                    session.query(Car)
+                    .filter(Car.user_id.is_(None))
+                    .options(joinedload(Car.user))
+                    .order_by(Car.id)
+                    .all()
+                )
