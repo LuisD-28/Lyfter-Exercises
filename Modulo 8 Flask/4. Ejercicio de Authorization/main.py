@@ -29,13 +29,6 @@ def _get_current_payload():
         return None
     return jwt_manager.decode(token)
 
-def _find_user_by_email(email):
-    user = u.get_users()
-    for u in user:
-        if u.email == email:
-            return u
-    return None
-
 # Check if the user is an admin based on the payload
 def _is_admin(payload):
     return payload and payload.get("role") == "ADMIN"
@@ -61,13 +54,12 @@ def register():
     if data.get('name') is None or data.get('email') is None or data.get('password_hash') is None:
         return Response(status=400)
 
-    role = data.get('role', "USER")
 
     user = u.Create_user(
         data.get('name'),
         data.get('email'),
         data.get('password_hash'),
-        role,
+        "USER"  # Default role is USER,
     )
     if user is None:
         return Response(status=400)
@@ -94,7 +86,7 @@ def login():
     token = jwt_manager.encode({"id": user.id, "role": user.role})
     return jsonify(token=token), 200
 
-
+# Get current user info
 @app.route('/me', methods=['GET'])
 def me():
     try:
@@ -122,37 +114,40 @@ def me():
 
 
 # User Management Endpoints
-# Create a new user
-# @app.route('/users', methods=['POST'])
-# def create_user():
-#     data = request.get_json(silent=True) or {}
 
-#     required_fields = ['name', 'email', 'password_hash']
-#     missing_fields = [field for field in required_fields if field not in data]
+# Set Role (admin only)
+@app.route('/users/<int:user_id>/role', methods=['PUT'])
+def set_role(user_id):
+    try:
+        payload, auth_error = _require_auth_payload()
+        if auth_error is not None:
+            return auth_error
+        if not _is_admin(payload):
+            return Response(status=403)
 
-#     if missing_fields:
-#         return jsonify({"error": f"Missing required fields: {', '.join(missing_fields)}"}), 400
-    
-#     user = u.Create_user(
-#         name=data.get('name'),
-#         email=data.get('email'),
-#         password_hash=data.get('password_hash'),
-#         role=data.get('role', "USER")
-#     )               
-#     if user:
-#         return jsonify({
-#             "message": f"User {user.name} created successfully",
-#             "user": {
-#                 "id": user.id,
-#                 "name": user.name,
-#                 "email": user.email,
-#                 "role": user.role
-#             }
-#         }), 201
-#     else:
-#         return jsonify({"error": "Failed to create user"}), 400
+        data = request.get_json(silent=True) or {}
+        new_role = data.get("role")
+        if new_role not in ["USER", "ADMIN"]:
+            return Response(status=400)
 
-# Get all users
+        user = u.update_user(user_id, role=new_role)
+        if user is None:
+            return Response(status=404)
+
+        return jsonify({
+            "id": user.id,
+            "name": user.name,
+            "email": user.email,
+            "role": user.role
+        }), 200
+
+    except jwt.InvalidTokenError:
+        return Response(status=401)
+    except Exception as e:
+        print(e)
+        return Response(status=500)
+
+# Get all users (admin only)
 @app.route('/users', methods=['GET'])
 def list_users():
     try:
@@ -239,6 +234,33 @@ def list_products():
         }
         for product in products
     ]), 200
+    except jwt.InvalidTokenError:
+        return Response(status=401)
+    except Exception as e:
+        print(e)
+        return Response(status=500)
+
+# Get a product by ID
+@app.route('/products/<int:product_id>', methods=['GET'])
+def get_product(product_id):
+    try:
+        payload, auth_error = _require_auth_payload()
+        if auth_error is not None:
+            return auth_error
+        if not _is_admin(payload):
+            return Response(status=403)
+        
+        product = p.get_product_by_id(product_id)
+        if product:
+            return jsonify({
+                "id": product.id,
+                "name": product.name,
+                "price": product.price,
+                "entry_date": product.entry_date,
+                "quantity": product.quantity
+            }), 200
+        else:
+            return jsonify({"error": f"No product found with ID {product_id}"}), 404
     except jwt.InvalidTokenError:
         return Response(status=401)
     except Exception as e:

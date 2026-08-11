@@ -30,7 +30,7 @@ def test_user_manager():
 
     # Update user
     print("\n Updating user...")
-    updated_user = u.update_user(new_user.id, name="Roberto A.", role="USER")
+    updated_user = u.update_user(new_user.id, name="ADMIN", role="ADMIN", email="admin@test.com")
     if updated_user:
         print(f"User updated: {updated_user.name}, Email: {updated_user.email}, Role: {updated_user.role}")
     else:

@@ -54,6 +54,8 @@ class ProductManager:
                 if key in self.ALLOWED_UPDATE_FIELDS:
                     if key == 'price':
                         setattr(product, key, Decimal(value))
+                    elif key == 'entry_date':
+                        setattr(product, key, datetime.strptime(value, "%Y-%m-%d").date())
                     else:
                         setattr(product, key, value)
 

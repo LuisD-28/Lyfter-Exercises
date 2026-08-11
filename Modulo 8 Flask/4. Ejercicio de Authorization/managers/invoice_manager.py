@@ -73,3 +73,12 @@ class InvoiceManager:
                 .order_by(Invoice.id.asc())
                 .all()
             )
+
+    def get_invoice_by_id(self, invoice_id):
+        with SessionLocal() as session:
+            return (
+                session.query(Invoice)
+                .options(joinedload(Invoice.user), joinedload(Invoice.items))
+                .filter(Invoice.id == invoice_id)
+                .first()
+            )

@@ -1,0 +1,17 @@
+# Bytecode de Python
+__pycache__/
+*.pyc
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Vs code settings
+.vscode/
+
+# keys
+keys/
+*.pem
+__pycache__/
+*.pyc
