@@ -65,7 +65,7 @@ def register():
         return Response(status=400)
 
     token = jwt_manager.encode({"id": user.id, "role": user.role})
-    return jsonify(token=token), 200
+    return jsonify(token=token), 201
 
 
 @app.route('/login', methods=['POST'])

@@ -13,7 +13,7 @@ class ProductManager:
             try:
                 product = Product(
                     name=name,
-                    price=Decimal(price),
+                    price=Decimal(str(price)),
                     entry_date=datetime.strptime(entry_date, "%Y-%m-%d").date(),
                     quantity=quantity
                 )
@@ -53,7 +53,7 @@ class ProductManager:
             for key, value in kwargs.items():
                 if key in self.ALLOWED_UPDATE_FIELDS:
                     if key == 'price':
-                        setattr(product, key, Decimal(value))
+                        setattr(product, key, Decimal(str(value)))
                     elif key == 'entry_date':
                         setattr(product, key, datetime.strptime(value, "%Y-%m-%d").date())
                     else:
